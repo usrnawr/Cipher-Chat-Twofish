@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CipherChat — Twofish CBC</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🐡</div>
+      <h1>CipherChat</h1>
+    </div>
+    <p class="tagline">TWOFISH CBC ENCRYPTION &amp; DECRYPTION ENGINE</p>
+    <!-- <div class="badge-row">
+      <span class="badge badge-cyan">TWOFISH</span>
+      <span class="badge badge-purple">CBC MODE</span>
+      <span class="badge badge-green">NO LIBRARY</span>
+      <span class="badge badge-cyan">16 ROUNDS</span>
+    </div> -->
+  </header>
+
+  <!-- Mode Toggle -->
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="btnEncMode" onclick="setMode('encrypt')">🔒 Enkripsi</button>
+    <button class="mode-btn" id="btnDecMode" onclick="setMode('decrypt')">🔓 Dekripsi</button>
+  </div>
+
+  <!-- Input Card -->
+  <div class="card">
+    <div class="card-title">INPUT</div>
+
+    <label id="labelInput">— PLAINTEXT</label>
+    <textarea id="inputText" placeholder="Masukkan pesan yang ingin dienkripsi..."></textarea>
+
+    <div class="gap"></div>
+
+    <label>— KUNCI ENKRIPSI</label>
+    <input type="text" id="keyInput" placeholder="Masukkan kunci (sesuai ukuran yang dipilih)..." />
+
+    <div class="key-options">
+      <button class="key-opt active" onclick="setKeySize(16, this)">128-bit (16 char)</button>
+      <button class="key-opt" onclick="setKeySize(24, this)">192-bit (24 char)</button>
+      <button class="key-opt" onclick="setKeySize(32, this)">256-bit (32 char)</button>
+    </div>
+
+    <div id="keyStatus" class="status-bar"></div>
+
+    <button class="btn-primary" id="btnProcess" onclick="process()">
+      <span id="btnText">🔒 Enkripsi Pesan</span>
+    </button>
+  </div>
+
+  <!-- Output Card -->
+  <div class="card">
+    <div class="output-header">
+      <div class="card-title" id="outputLabel"> OUTPUT — CIPHERTEXT</div>
+      <button class="btn-copy" onclick="copyOutput()">📋 Salin</button>
+    </div>
+    <div class="output-box" id="outputBox">
+      <span class="output-empty">Hasil akan tampil di sini...</span>
+    </div>
+    <div id="processStatus" class="status-bar"></div>
+  </div>
+
+  <!-- Visualizer -->
+  <div class="card">
+    <div class="card-title">VISUALISASI PROSES</div>
+    <label class="vis-toggle">
+      <input type="checkbox" id="visCheck" onchange="toggleVis()"/>
+      Tampilkan visualisasi 16 round Feistel
+    </label>
+
+    <div class="vis-panel" id="visPanel">
+      <label style="margin-top:0.75rem">PROGRESS 16 ROUND FEISTEL NETWORK</label>
+      <div class="round-grid" id="roundGrid"></div>
+
+      <div class="gap"></div>
+      <label>SUBKUNCI YANG DIHASILKAN (K[0]...K[39])</label>
+      <div class="key-display" id="keyDisplay">
+        <div style="color:var(--muted);font-family:var(--mono);font-size:0.75rem;padding:0.5rem;grid-column:1/-1">
+          Subkunci akan tampil setelah proses dijalankan...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    CipherChat — Implementasi Algoritma Twofish CBC &nbsp;|&nbsp; Kelompok Sikut &nbsp;|&nbsp; UMRAH 2026<br/>
+    <span style="color:#94a3b8">Zafira Khairunnisa · Naurah Nadhif Shahada · Rashika Kasih Putri</span>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
